@@ -5,19 +5,29 @@ import java.util.Scanner;
 public class HanoiTower {
 
     public static void main(String[] args) {
-            Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        int n;
 
+        while (true) {
             System.out.print("Enter the number of disks: ");
-            int n = scanner.nextInt();
-
-            if (n < 1) {
-                System.out.println("Please enter a positive number.");
+            if (scanner.hasNextInt()) {
+                n = scanner.nextInt();
+                if (n >= 1) {
+                    break;
+                } else {
+                    System.out.println("Please enter a positive number.");
+                }
             } else {
-                System.out.println("Steps to solve Towers of Hanoi with " + n + " disks:");
-                hanoi(n, 'A', 'C', 'B');
+                System.out.println("Invalid input! Please enter an integer.");
+                scanner.next();
             }
+        }
 
-            scanner.close();
+        System.out.println("\nSteps to solve Towers of Hanoi with " + n + " disks:");
+        hanoi(n, 'A', 'C', 'B');
+
+
+        scanner.close();
     }
 
     private static void hanoi(int n, char a, char c, char b) {
